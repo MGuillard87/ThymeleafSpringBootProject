@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<!-- Thymeleaf Namespace -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Welcome</h1>
+<h2 th:utext="${message}">..!..</h2>
+
+<!--
+Thymeleaf est un  Java XML/XHTML/HTML5 Template Engine qui peut travailler à la fois dans des environnements
+Web (Servlet) et celui de non Web. Il est mieux adapté pour diffuser XHTML/HTML5 sur View (View Layer) des applications
+Web basées sur MVC.
+
+=> Le fichier modèle (Template file) de Thymeleaf est un fichier au format XML/XHTML/HTML5.
+=> Thymeleaf Engine (le moteur Thymeleaf) va:
+        - lire un fichier modèle                   ET
+        - le combiner avec des objets Java pour générer (generate) un autre document.
+
+!!! Thymeleaf peut être utilisé pour remplacer  JSP sur la couche  View (View Layer) de l'application  Web MVC
+
+Création de 3 fichiers  HTML (index, characterList et addCharacter):
+- Les fichiers  HTML doivent être adaptés aux normes de XML, toutes les étiquettes (tag) doivent être ouvertes et fermées.
+- Tous les fichiers  HTML doivent déclarer l'utilisation de  Thymeleaf Namespace:
+
+   -->
+
+<!--
+Il y a des Thymeleaf Marker ("th") qui sont des instructions aidant les données de processus de Thymeleaf Engine.
+-->
+<a th:href="@{/characterList}">Liste des personnages</a>
+
+</body>
+
+</html>

@@ -34,6 +34,9 @@ public class MainController {
     @Value("${error.message}")
     private String errorMessage;
 
+    @Value("${error.messageId}")
+    private String errorMessageId;
+
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
 
@@ -66,17 +69,33 @@ public class MainController {
         int id = characterForm.getId();
         String nom = characterForm.getNom();
         String type = characterForm.getType();
+        Character characterFindById = this.findById(id);
 
-        if (nom != null && nom.length() > 0 //
-                && type != null && type.length() > 0) {
-            Character newCharacter = new Character(id,nom, type);
-            characters.add(newCharacter);
-
-            return "redirect:/characterList";
+        if(nom == null || nom.length() == 0
+                || type == null || type.length() == 0){
+            model.addAttribute("errorMessage", errorMessage);
+            return "addCharacter";
+        }
+        if(characterFindById != null){
+            model.addAttribute("errorMessageId", errorMessageId);
+            return "addCharacter";
         }
 
-        model.addAttribute("errorMessage", errorMessage);
-        return "addCharacter";
+        Character newCharacter = new Character(id,nom, type);
+        characters.add(newCharacter);
+
+        return "redirect:/characterList";
+
+    }
+
+
+    public Character findById(int id) {
+        for (Character character : characters) {
+            if (character.getId() == id) {
+                return character;
+            }
+        }
+        return null;
     }
 
 }

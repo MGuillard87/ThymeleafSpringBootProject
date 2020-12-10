@@ -31,9 +31,13 @@
 
 <br/>
 
-<!-- Vérifier si le message d'erreur n'est pas null et vide-->
+<!-- Message d'erreur vérifiant si le character ajouté n'est pas null et vide-->
 
 <div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+<div th:if="${errorMessageId}" th:utext="${errorMessageId}"
      style="color:red;font-style:italic;">
     ...
 </div>

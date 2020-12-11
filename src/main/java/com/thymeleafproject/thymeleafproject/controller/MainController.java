@@ -24,7 +24,6 @@ public class MainController {
         characters.add(new Character(0, "Bill", "Guerrier"));
         characters.add(new Character(1, "Merlin", "Magicien"));
         characters.add(new Character(2,"Clochette", "Magicien"));
-        characters.add(new Character(3, "Steve", "Guerrier"));
     }
 
     // Injectez (inject) via application.properties.

@@ -3,11 +3,11 @@ les placer dans le dossier src/main/resources/static ou dans ses sous-dossiers
 */
 
 h1 {
-    color:#0000FF;
+    color:#6666ff;
 }
 
 h2 {
-    color:#FF0000;
+    color: #993366;
 }
 
 table {
@@ -16,3 +16,5 @@ table {
 
 table th, table td {
     padding: 5px;
+
+

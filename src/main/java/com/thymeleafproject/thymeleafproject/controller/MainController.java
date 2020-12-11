@@ -1,6 +1,7 @@
 package com.thymeleafproject.thymeleafproject.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.thymeleafproject.thymeleafproject.form.CharacterForm;
@@ -8,9 +9,8 @@ import com.thymeleafproject.thymeleafproject.model.Character;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 /*
 MainController est une classe  Controller. Il traite les demandes d'un utilisateur et contrôle le flux (flow) de
@@ -22,8 +22,6 @@ public class MainController {
 
     static {
         characters.add(new Character(0, "Bill", "Guerrier"));
-        characters.add(new Character(1, "Merlin", "Magicien"));
-        characters.add(new Character(2,"Clochette", "Magicien"));
     }
 
     // Injectez (inject) via application.properties.
@@ -44,13 +42,27 @@ public class MainController {
         return "index";
     }
 
+
     @RequestMapping(value = { "/characterList" }, method = RequestMethod.GET)
-    public String characterList(Model model) {
+    public String getCharacters(Model model) {
+        String url = "http://localhost:8081/Characters";
+        RestTemplate restTemplate = new RestTemplate();
+        Character[] characters = restTemplate.getForObject(url, Character[].class);
 
         model.addAttribute("characters", characters);
 
         return "characterList";
     }
+
+
+
+  /*  @RequestMapping(value = { "/characterList" }, method = RequestMethod.GET)
+    public String characterList(Model model) {
+
+        model.addAttribute("characters", characters);
+
+        return "characterList";
+    } */
 
     @RequestMapping(value = { "/addCharacter" }, method = RequestMethod.GET)
     public String showAddCharacterPage(Model model) {
